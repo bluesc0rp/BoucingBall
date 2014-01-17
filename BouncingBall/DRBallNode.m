@@ -16,6 +16,7 @@
         self.position = point;
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:(self.size.width/2.0)];
         self.physicsBody.usesPreciseCollisionDetection = YES;
+        self.physicsBody.density = 0.001;
     }
     return self;
 }

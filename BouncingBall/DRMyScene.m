@@ -26,6 +26,8 @@
 }
 
 -(void)createSceneContents {
+    self.physicsWorld.contactDelegate = self;
+    
     self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
     
 
@@ -34,7 +36,8 @@
     floor.position = CGPointMake(self.size.width/2.0, 0);
     floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     floor.physicsBody.dynamic = NO;
-
+    floor.physicsBody.contactTestBitMask = 0 << 1;
+    
     [self addChild:floor];
     
     
@@ -46,14 +49,18 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         [self enumerateChildNodesWithName:@"ball" usingBlock:^(SKNode *node, BOOL *stop) {
-            NSLog(@"touch");
-            node.position = CGPointMake(node.position.x, node.position.y + 100);
+            NSLog(@"touch %f", node.physicsBody.mass);
+            node.position = CGPointMake(node.position.x, node.position.y + 150);
         }];
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+}
+
+- (void)didEndContact:(SKPhysicsContact *)contact {
+    NSLog(@"contact");
 }
 
 @end
