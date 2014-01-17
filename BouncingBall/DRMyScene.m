@@ -39,13 +39,16 @@
     
     
     [self addChild:
-     [[DRBallNode alloc] initAtPoint:CGPointMake(40, 40)]
+     [[DRBallNode alloc] initAtPoint:CGPointMake(40, 400)]
     ];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
-
+        [self enumerateChildNodesWithName:@"ball" usingBlock:^(SKNode *node, BOOL *stop) {
+            NSLog(@"touch");
+            node.position = CGPointMake(node.position.x, node.position.y + 100);
+        }];
     }
 }
 
