@@ -25,6 +25,9 @@
 		6EAEECEF1889CFC900AF27F6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EAEECC71889CFC900AF27F6 /* UIKit.framework */; };
 		6EAEECF71889CFC900AF27F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EAEECF51889CFC900AF27F6 /* InfoPlist.strings */; };
 		6EAEECF91889CFC900AF27F6 /* BouncingBallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEECF81889CFC900AF27F6 /* BouncingBallTests.m */; };
+		6EAEED051889D09100AF27F6 /* DRBallNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEED041889D09100AF27F6 /* DRBallNode.m */; };
+		6EAEED081889D3EC00AF27F6 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EAEED071889D3EC00AF27F6 /* ball.png */; };
+		6EAEED0B1889D5EE00AF27F6 /* DRFloorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEED0A1889D5EE00AF27F6 /* DRFloorNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,11 @@
 		6EAEECF41889CFC900AF27F6 /* BouncingBallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BouncingBallTests-Info.plist"; sourceTree = "<group>"; };
 		6EAEECF61889CFC900AF27F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6EAEECF81889CFC900AF27F6 /* BouncingBallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BouncingBallTests.m; sourceTree = "<group>"; };
+		6EAEED031889D09100AF27F6 /* DRBallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBallNode.h; sourceTree = "<group>"; };
+		6EAEED041889D09100AF27F6 /* DRBallNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBallNode.m; sourceTree = "<group>"; };
+		6EAEED071889D3EC00AF27F6 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		6EAEED091889D5EE00AF27F6 /* DRFloorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRFloorNode.h; sourceTree = "<group>"; };
+		6EAEED0A1889D5EE00AF27F6 /* DRFloorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRFloorNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +131,8 @@
 		6EAEECCB1889CFC900AF27F6 /* BouncingBall */ = {
 			isa = PBXGroup;
 			children = (
+				6EAEED061889D3B200AF27F6 /* Art */,
+				6EAEED021889D07400AF27F6 /* Nodes */,
 				6EAEECD41889CFC900AF27F6 /* DRAppDelegate.h */,
 				6EAEECD51889CFC900AF27F6 /* DRAppDelegate.m */,
 				6EAEECD71889CFC900AF27F6 /* Main_iPhone.storyboard */,
@@ -165,6 +175,25 @@
 				6EAEECF51889CFC900AF27F6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6EAEED021889D07400AF27F6 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				6EAEED031889D09100AF27F6 /* DRBallNode.h */,
+				6EAEED041889D09100AF27F6 /* DRBallNode.m */,
+				6EAEED091889D5EE00AF27F6 /* DRFloorNode.h */,
+				6EAEED0A1889D5EE00AF27F6 /* DRFloorNode.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		6EAEED061889D3B200AF27F6 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				6EAEED071889D3EC00AF27F6 /* ball.png */,
+			);
+			name = Art;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +275,7 @@
 			files = (
 				6EAEECE41889CFC900AF27F6 /* Spaceship.png in Resources */,
 				6EAEECE61889CFC900AF27F6 /* Images.xcassets in Resources */,
+				6EAEED081889D3EC00AF27F6 /* ball.png in Resources */,
 				6EAEECDC1889CFC900AF27F6 /* Main_iPad.storyboard in Resources */,
 				6EAEECD91889CFC900AF27F6 /* Main_iPhone.storyboard in Resources */,
 				6EAEECD01889CFC900AF27F6 /* InfoPlist.strings in Resources */,
@@ -267,9 +297,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EAEED051889D09100AF27F6 /* DRBallNode.m in Sources */,
 				6EAEECE21889CFC900AF27F6 /* DRMyScene.m in Sources */,
 				6EAEECD61889CFC900AF27F6 /* DRAppDelegate.m in Sources */,
 				6EAEECDF1889CFC900AF27F6 /* DRViewController.m in Sources */,
+				6EAEED0B1889D5EE00AF27F6 /* DRFloorNode.m in Sources */,
 				6EAEECD21889CFC900AF27F6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

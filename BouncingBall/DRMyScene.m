@@ -7,42 +7,45 @@
 //
 
 #import "DRMyScene.h"
+#import "DRBallNode.h"
+#import "DRFloorNode.h"
+
+@interface DRMyScene ()
+@property BOOL contentCreated;
+@end
 
 @implementation DRMyScene
 
--(id)initWithSize:(CGSize)size {    
-    if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
-        
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+- (void)didMoveToView: (SKView *) view
+{
+    if (!self.contentCreated)
+    {
+        [self createSceneContents];
+        self.contentCreated = YES;
     }
-    return self;
+}
+
+-(void)createSceneContents {
+    self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+    
+
+    NSInteger floorHeight = 10;
+    SKSpriteNode* floor =  [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(self.size.width, floorHeight)];
+    floor.position = CGPointMake(self.size.width/2.0, 0);
+    floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
+    floor.physicsBody.dynamic = NO;
+
+    [self addChild:floor];
+    
+    
+    [self addChild:
+     [[DRBallNode alloc] initAtPoint:CGPointMake(40, 40)]
+    ];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+
     }
 }
 
