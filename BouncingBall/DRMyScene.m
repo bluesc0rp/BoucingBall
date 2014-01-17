@@ -29,10 +29,10 @@
 -(void)createSceneContents {
     self.physicsWorld.contactDelegate = self;
     
-    self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+    self.backgroundColor = [SKColor colorWithRed:0.3 green:0.4 blue:0.6 alpha:1.0];
     
 
-    NSInteger floorHeight = 10;
+    NSInteger floorHeight = 50;
     SKSpriteNode* floor =  [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(self.size.width, floorHeight)];
     floor.position = CGPointMake(self.size.width/2.0, 0);
     floor.physicsBody = [[SKPhysicsBody bodyWithRectangleOfSize:floor.size] tap:^(SKPhysicsBody* body) {
@@ -48,15 +48,14 @@
     
     [self addChild:[[[DRBallNode alloc] initAtPoint:CGPointMake(self.size.width/2.0, 400)] tap:^(DRBallNode* ball) {
         ball.physicsBody.categoryBitMask = 1 << 1;
-        ball.physicsBody.contactTestBitMask =1 << 0;
+        ball.physicsBody.contactTestBitMask = 1 << 0;
     }]];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         [self enumerateChildNodesWithName:@"ball" usingBlock:^(SKNode *node, BOOL *stop) {
-
-            [node.physicsBody applyImpulse:CGVectorMake(0, 100)];
+            [node.physicsBody applyImpulse:CGVectorMake(0, 70) atPoint:[touch locationInNode:self ]];
         }];
     }
 }
