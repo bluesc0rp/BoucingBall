@@ -37,13 +37,15 @@
     floor.position = CGPointMake(self.size.width/2.0, 0);
     floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     floor.physicsBody.dynamic = NO;
-    floor.physicsBody.contactTestBitMask = 0 << 1;
+    floor.physicsBody.categoryBitMask = 1 << 0;
+
     
     [self addChild:floor];
     
     
     [self addChild:[[[DRBallNode alloc] initAtPoint:CGPointMake(40, 400)] tap:^(DRBallNode* ball) {
-        ball.physicsBody.contactTestBitMask = 0 << 2;
+        ball.physicsBody.categoryBitMask = 1 << 1;
+        ball.physicsBody.contactTestBitMask =1 << 0;
     }]];
 }
 
