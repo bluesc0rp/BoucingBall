@@ -9,6 +9,7 @@
 #import "DRMyScene.h"
 #import "DRBallNode.h"
 #import "DRFloorNode.h"
+#import "NSObject+DRTap.h"
 
 @interface DRMyScene ()
 @property BOOL contentCreated;
@@ -41,9 +42,9 @@
     [self addChild:floor];
     
     
-    [self addChild:
-     [[DRBallNode alloc] initAtPoint:CGPointMake(40, 400)]
-    ];
+    [self addChild:[[[DRBallNode alloc] initAtPoint:CGPointMake(40, 400)] tap:^(DRBallNode* ball) {
+        ball.physicsBody.contactTestBitMask = 0 << 2;
+    }]];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
