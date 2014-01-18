@@ -17,6 +17,8 @@
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:(self.size.width/2.0)];
         self.physicsBody.usesPreciseCollisionDetection = YES;
         self.physicsBody.density = 1;
+        self.physicsBody.categoryBitMask = 1 << 1;
+        self.physicsBody.contactTestBitMask = 1 << 0;
     }
     return self;
 }

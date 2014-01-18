@@ -46,16 +46,19 @@
     [self addChild:floor];
     
     
-    [self addChild:[[[DRBallNode alloc] initAtPoint:CGPointMake(self.size.width/2.0, 400)] tap:^(DRBallNode* ball) {
-        ball.physicsBody.categoryBitMask = 1 << 1;
-        ball.physicsBody.contactTestBitMask = 1 << 0;
-    }]];
+    [self addChild:[[DRBallNode alloc] initAtPoint:CGPointMake(self.size.width/2.0, 400)]];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         [self enumerateChildNodesWithName:@"ball" usingBlock:^(SKNode *node, BOOL *stop) {
-            [node.physicsBody applyImpulse:CGVectorMake(0, 70) atPoint:[touch locationInNode:self ]];
+            
+            CGPoint touchLocation = [touch locationInNode:self ];
+            CGFloat dx =  node.position.x - touchLocation.x;
+            CGFloat dy =  node.position.y - touchLocation.y;
+            NSLog(@"dx: %f, dy %f", dx, dy);
+            
+            [node.physicsBody applyImpulse:CGVectorMake(dx, dy) atPoint:[touch locationInNode:self ]];
         }];
     }
 }
@@ -65,11 +68,6 @@
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact {
-    NSLog(@"body A: %@, body B: %@, Collision impulse: %f",
-              contact.bodyA.node.name,
-          contact.bodyB.node.name,
-          contact.collisionImpulse);
-
 //    [contact.bodyB applyImpulse:CGVectorMake(0,  contact.collisionImpulse/2)];
 
 }
