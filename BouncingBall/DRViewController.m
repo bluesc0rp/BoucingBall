@@ -21,7 +21,8 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [DRMyScene sceneWithSize:skView.bounds.size];
+    NSLog(@"bounds: %f, %f", skView.bounds.size.width, skView.bounds.size.height);
+    SKScene * scene = [DRMyScene sceneWithSize:CGSizeMake( skView.bounds.size.height, skView.bounds.size.width)];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -35,11 +36,7 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
+    return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;
 }
 
 - (void)didReceiveMemoryWarning
